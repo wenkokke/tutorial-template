@@ -1,0 +1,88 @@
+---
+import "tufte-css/tufte.min.css";
+import CopyOnClick from "../components/CopyOnClick.astro";
+import { pageTitle } from "../site.mjs";
+const { frontmatter } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{frontmatter.title}</title>
+  </head>
+  <body>
+    <article>
+      <header>
+        <p class="banner-title">
+          <a href="/">{pageTitle}</a>
+        </p>
+      </header>
+      <h1>{frontmatter.title}</h1>
+      {
+        frontmatter?.subtitle && (
+          <span class="subtitle">{frontmatter?.subtitle}</span>
+        )
+      }
+      <slot />
+    </article>
+  </body>
+</html>
+
+<!-- Add Prism themes -->
+<style is:global>
+  @import "prismjs/themes/prism-solarizedlight.min.css" screen;
+  @import "prismjs/themes/prism-tomorrow.min.css" screen and
+    (prefers-color-scheme: dark);
+</style>
+
+<!-- Add "Copy on Click" button to code blocks. -->
+<CopyOnClick />
+
+<!-- Fix image scaling in tufte-css -->
+<!-- See: https://github.com/edwardtufte/tufte-css/pull/192 -->
+<style is:global>
+  img {
+    height: auto;
+  }
+</style>
+
+<!-- Disable underline in code block in tufte-css -->
+<!-- See: https://github.com/edwardtufte/tufte-css/pull/187 -->
+<style is:global>
+  code > a {
+    background: transparent !important;
+  }
+</style>
+
+<!-- Display for marginnote bibliographies -->
+<style is:global>
+  label.margin-toggle.inline-cite {
+    display: inline;
+  }
+  span.inline-bib {
+    display: inline-block;
+  }
+  span.inline-bib > span.inline-bib-entry {
+    display: list-item;
+    list-style: none;
+  }
+</style>
+
+<!-- Style for page banner -->
+<style is:global>
+  article > header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  article > header > p.banner-title {
+    font-style: italic;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    display: block;
+    line-height: 1;
+  }
+</style>
