@@ -1,0 +1,35 @@
+---
+import "tufte-css/tufte.min.css";
+import "../assets/style.css";
+import CopyOnClick from "../components/CopyOnClick.astro";
+import { pageTitle } from "../site.mjs";
+const { frontmatter } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{frontmatter.title}</title>
+  </head>
+  <body>
+    <article>
+      <header>
+        <p class="banner-title">
+          <a href="/">{pageTitle}</a>
+        </p>
+      </header>
+      <h1>{frontmatter.title}</h1>
+      {
+        frontmatter?.subtitle && (
+          <span class="subtitle">{frontmatter?.subtitle}</span>
+        )
+      }
+      <slot />
+    </article>
+  </body>
+</html>
+
+<!-- Add "Copy on Click" button to code blocks. -->
+<CopyOnClick />
