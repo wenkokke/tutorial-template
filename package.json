@@ -1,0 +1,25 @@
+{
+  "name": "tutorial-template",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.9.1",
+    "tufte-css": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/unist": "^3.0.3",
+    "hastscript": "^9.0.1",
+    "rehype-citation": "^2.3.1",
+    "rehype-mathjax": "^7.1.0",
+    "rehype-raw": "^7.0.0",
+    "remark-behead": "^3.1.0",
+    "remark-directive": "^4.0.0",
+    "remark-math": "^6.0.0",
+    "unist-util-visit": "^5.0.0"
+  }
+}

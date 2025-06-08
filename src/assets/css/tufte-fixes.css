@@ -1,0 +1,12 @@
+/* Fix image scaling in tufte-css */
+/* See: https://github.com/edwardtufte/tufte-css/pull/192 */
+img {
+  height: auto;
+}
+
+/* Disable underline in code block in tufte-css */
+/* See: https://github.com/edwardtufte/tufte-css/pull/187 */
+code > a {
+  /* TODO: use text-decoration when next version of tufte-css is released */
+  background: unset !important;
+}

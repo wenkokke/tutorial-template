@@ -1,0 +1,11 @@
+/* Display for marginnote bibliographies */
+label.margin-toggle.inline-cite {
+  display: inline;
+}
+span.inline-bib {
+  display: inline-block;
+}
+span.inline-bib > span.inline-bib-entry {
+  display: list-item;
+  list-style: none;
+}
