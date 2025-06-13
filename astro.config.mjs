@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import remarkTufteSection from "./src/plugins/remark-tufte-section.mjs";
+// @ts-ignore
+import remarkAgda from "remark-agda";
 import remarkBehead from "remark-behead";
 import remarkDirective from "remark-directive";
 import remarkTufteSidenote from "./src/plugins/remark-tufte-sidenote.mjs";
@@ -13,6 +15,19 @@ import rehypeCitation from "rehype-citation";
 import rehypeTufteCitation from "./src/plugins/rehype-tufte-citation.mjs";
 import remarkTufteCitation from "./src/plugins/remark-tufte-citation.mjs";
 import remarkTuftLinter from "./src/plugins/remark-tufte-linter.mjs";
+
+// Agda options
+const ROOT = import.meta.dirname;
+const Agda = {
+  agdaStdlibBaseUrl: "https://agda.github.io/agda-stdlib/v2.2/",
+  htmlDir: ".astro/cache/remark-agda/html",
+  args: ["--library-file=special-octo-eureka.agda-lib-index"],
+  options: {
+    cwd: ROOT,
+    env: { ROOT },
+    stdout: "inherit",
+  },
+};
 
 // MathJax options:
 const MathJax = {
@@ -28,6 +43,7 @@ export default defineConfig({
     remarkPlugins: [
       remarkMath,
       remarkDirective,
+      [remarkAgda, Agda],
       [remarkBehead, { depth: 1 }],
       remarkTuftLinter,
       remarkTufteSection,
