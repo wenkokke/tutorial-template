@@ -1,5 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+// @ts-ignore
+import remarkAgda from "remark-agda";
 import remarkBehead from "remark-behead";
 import remarkCustomHeaderId from "remark-custom-header-id";
 import remarkDirective from "remark-directive";
@@ -18,6 +20,19 @@ import rehypeMathJax from "rehype-mathjax";
 import rehypeSlug from "rehype-slug";
 import rehypeTufteCitation from "./src/plugins/rehype-tufte-citation.mjs";
 
+// Agda options
+const ROOT = import.meta.dirname;
+const Agda = {
+  agdaStdlibBaseUrl: "https://agda.github.io/agda-stdlib/v2.2/",
+  htmlDir: ".astro/cache/remark-agda/html",
+  args: ["--library-file=tutorial-template.agda-lib-index"],
+  options: {
+    cwd: ROOT,
+    env: { ROOT },
+    stdout: "inherit",
+  },
+};
+
 // MathJax options:
 const MathJax = {
   // TeX Input Processor Options
@@ -30,6 +45,7 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: "prism",
     remarkPlugins: [
+      [remarkAgda, Agda],
       [remarkBehead, { depth: 1 }],
       remarkCustomHeaderId,
       remarkDirective,
