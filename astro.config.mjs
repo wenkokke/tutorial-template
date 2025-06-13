@@ -8,6 +8,8 @@
  */
 import { defineConfig } from "astro/config";
 import assert from "assert";
+// @ts-ignore
+import remarkAgda from "remark-agda";
 import remarkBehead from "remark-behead";
 import remarkBracketedSpans2 from "remark-bracketed-spans-2";
 import remarkCite from "@benrbray/remark-cite";
@@ -30,6 +32,19 @@ import rehypeTufteCitation from "./src/plugins/rehype-tufte-citation.mjs";
 import rehypeTufteCode from "./src/plugins/rehype-tufte-code.mjs";
 import { bracketedSpanToHast } from "mdast-util-bracketed-spans";
 
+// Agda options
+const ROOT = import.meta.dirname;
+const Agda = {
+  agdaStdlibBaseUrl: "https://agda.github.io/agda-stdlib/v2.2/",
+  htmlDir: ".astro/cache/remark-agda/html",
+  args: ["--library-file=tutorial-template.agda-lib-index"],
+  options: {
+    cwd: ROOT,
+    env: { ROOT },
+    stdout: "inherit",
+  },
+};
+
 // MathJax options:
 const MathJax = {
   // TeX Input Processor Options
@@ -44,6 +59,7 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: "prism",
     remarkPlugins: [
+      [remarkAgda, Agda],
       [remarkBehead, { depth: 1 }],
       // @ts-ignore
       remarkBracketedSpans2,
