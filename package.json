@@ -17,6 +17,7 @@
     "hastscript": "^9.0.1",
     "rehype-citation": "^2.3.1",
     "rehype-mathjax": "^7.1.0",
+    "remark-agda": "github:wenkokke/remark-agda",
     "remark-behead": "^3.1.0",
     "remark-directive": "^4.0.0",
     "remark-math": "^6.0.0",
