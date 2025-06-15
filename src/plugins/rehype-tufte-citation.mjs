@@ -45,7 +45,7 @@ export default function rehypeTufteCitation() {
         h(
           "label",
           { for: label, class: "margin-toggle", ...span.properties },
-          ...span.children
+          ...span.children,
         ),
         h("input", { type: "checkbox", id: label, class: "margin-toggle" }),
         h("span", { class: "marginnote" }, note),
@@ -66,6 +66,8 @@ export default function rehypeTufteCitation() {
 }
 
 function inlineBib(bibEntries) {
-  bibEntries = bibEntries.map(bibEntry => h("span", {class: "inline-bib-entry"}, bibEntry));
-  return h("span", {class: "inline-bib"}, bibEntries);
+  bibEntries = bibEntries.map((bibEntry) =>
+    h("span", { class: "inline-bib-entry" }, bibEntry),
+  );
+  return h("span", { class: "inline-bib" }, bibEntries);
 }

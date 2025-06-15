@@ -63,7 +63,7 @@ function isSectionStart(node) {
   visit(
     node,
     isNewthoughtDirective,
-    (_newthought) => (hasNewthoughtDirective = true)
+    (_newthought) => (hasNewthoughtDirective = true),
   );
   return isHeading1 || hasNewthoughtDirective;
 }

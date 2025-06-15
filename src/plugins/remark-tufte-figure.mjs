@@ -75,7 +75,7 @@ export default function remarkTufteFigure() {
       let caption = null;
       visit(figure, "image", (image) => {
         caption = image.title;
-        image.figuretype = "marginfigure"
+        image.figuretype = "marginfigure";
       });
       const label = figureLabel(figure);
       const children = figure.children;

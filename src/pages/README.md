@@ -3,32 +3,22 @@ layout: ../layouts/Layout.astro
 title: Getting Started
 ---
 
-Building
-================================================================================
+# Building
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
+| Command           | Action                                       |
+| :---------------- | :------------------------------------------- |
+| `npm install`     | Installs dependencies                        |
+| `npm run dev`     | Starts local dev server at `localhost:4321`  |
+| `npm run build`   | Build your production site to `./dist/`      |
+| `npm run preview` | Preview your build locally, before deploying |
 
-Markdown
-================================================================================
+# Markdown
 
-Document metadata
---------------------------------------------------------------------------------
+## Document metadata
 
-Each page should begin with a metadata block.
-This block *must* define the `layout` and `title` keys.
-The `layout` key determines the page layout.
-There is only one supported layout.
-Hence, the `layout` should always contain a relative path to the `Layout.astro` file.
-The `title` sets the page title.
-Optionally, the block *may* define the `subtitle` key.
-The `subtitle` sets the page subtitle.
+Each page should begin with a metadata block. This block _must_ define the `layout` and `title` keys. The `layout` key determines the page layout. There is only one supported layout. Hence, the `layout` should always contain a relative path to the `Layout.astro` file. The `title` sets the page title. Optionally, the block _may_ define the `subtitle` key. The `subtitle` sets the page subtitle.
 
 ```yaml
 ---
@@ -37,21 +27,18 @@ title: Getting Started
 ---
 ```
 
-Sections and headings
---------------------------------------------------------------------------------
+## Sections and headings
 
-Each page should be divided into sections.
-Sections are started with either a level-1 header or a `:newthought` command. These should be used consistently. The page should either use level-1 headers or `:newthought` commands to start all sections.
+Each page should be divided into sections. Sections are started with either a level-1 header or a `:newthought` command. These should be used consistently. The page should either use level-1 headers or `:newthought` commands to start all sections.
 
 ```md
-This Is A Level-1 Header
-========================
+# This Is A Level-1 Header
+
 This is the start of a new section.
 ```
 
 ```md
-:newthought[This is a new thought],
-which starts a new section.
+:newthought[This is a new thought], which starts a new section.
 ```
 
 :newthought[This is a new thought], which starts a new section.
@@ -59,15 +46,12 @@ which starts a new section.
 The use of the `:newthought` command is preferred if the document can be structured using only level-1 headers. You should aim to structure your document in this way. If you really need level-2 headers, you should only use level-1 headers to start sections.
 
 ```md
-This Is A Level-1 Header
-========================
+# This Is A Level-1 Header
 
-This Is A Level-2 Header
-------------------------
+## This Is A Level-2 Header
 ```
 
-Margin and side notes
---------------------------------------------------------------------------------
+## Margin and side notes
 
 The use of margin notes and side notes is encouraged. These use the Markdown syntax for footnotes, but are rendered as either margin or side notes. The difference between margin and side notes is that margin notes are unnumbered and their anchor is rendered as a "⊕" in the text. On the contrary, side notes are numbered and their anchor is rendered as a superscript number in the text. Any note whose label starts with `mn-` is rendered as a margin note. Any other note is rendered as a side note. However, it is good practice to start the labels for side notes with `sn-`.
 
@@ -91,8 +75,7 @@ This is the main text.[^sn-aside]
 
 [^sn-aside]: This is a side note.
 
-Figures
---------------------------------------------------------------------------------
+## Figures
 
 The template supports four types of figures.
 
@@ -100,6 +83,7 @@ A regular figure renders in the main text column and its caption renders as a ma
 
 ```md
 <!-- This is a main figure -->
+
 ![alt](url "caption")
 ```
 
@@ -109,85 +93,83 @@ A margin figure renders as a margin note.
 
 ```md
 <!-- This is a margin figure -->
-This is the main text.
-:marginfigure[![alt](url "caption")]
+
+This is the main text. :marginfigure[![alt](url "caption")]
 ```
 
-This is the main text.
-:marginfigure[![Image of a Rhinoceros](../assets/rhino.png "This is a margin figure.")]
+This is the main text. :marginfigure[![Image of a Rhinoceros](../assets/rhino.png "This is a margin figure.")]
 
 A full-width figure renders across the full width of the page.
 
 ```md
 <!-- This is a full-width figure -->
-:::fullwidthfigure
-![alt](url "caption")
-:::
+
+:::fullwidthfigure ![alt](url "caption") :::
 ```
 
-:::fullwidthfigure
-![Figurative map of the successive losses of the French Army in the Russian campaign, 1812-1813](../assets/napoleons-march.png)
-:::
+:::fullwidthfigure ![Figurative map of the successive losses of the French Army in the Russian campaign, 1812-1813](../assets/napoleons-march.png) :::
 
-An iframe figure can be used to embed external videos.
-It renders in the main text column and its caption renders as a margin note.
+An iframe figure can be used to embed external videos. It renders in the main text column and its caption renders as a margin note.
 
 ```md
 <!-- This is an iframe figure -->
+
 :iframefigure[caption]{src=url}
 ```
 
 ::iframefigure[iPhone Resolution by Edward Tufte]{src=https://www.youtube.com/embed/YslQ2625TR4}
 
-Code
---------------------------------------------------------------------------------
+## Code
 
-``````md
+````md
 <!-- This is a Python code block -->
+
 ```py
 def hello_world():
     print("Hello, World!")
 ```
-``````
+````
 
 ```py
 def hello_world():
     print("Hello, World!")
 ```
 
-``````md
+````md
 <!-- This is a Haskell code block -->
+
 ```hs
 main :: IO ()
 main = putStrLn "Hello, World!"
 ```
-``````
+````
 
 ```hs
 main :: IO ()
 main = putStrLn "Hello, World!"
 ```
 
-``````md
+````md
 <!-- This is an Agda code block -->
+
 ```agda
 main : IO ⊤
 main = putStrLn "Hello, World!"
 ```
-``````
+````
 
 ```agda
 main : IO ⊤
 main = putStrLn "Hello, World!"
 ```
 
-Math
---------------------------------------------------------------------------------
+## Math
 
 The template supports a subset of LaTeX math, which is rendered by MathJax.
 
 ```md
 <!-- This is LaTeX math. -->
+
 $$
 L = \frac{1}{2} \rho v^2 S C_L
 $$
@@ -197,16 +179,17 @@ $$
 L = \frac{1}{2} \rho v^2 S C_L
 $$
 
-Citations
---------------------------------------------------------------------------------
+## Citations
 
 The template supports BibTeX citations.
 
 ```md
 <!-- This is a parenthetical citation. -->
+
 This is a parenthetical citation [see @Nash1950 pp 12-13; @Nash1951].
 
 <!-- This is a textual citation. -->
+
 This is a textual citation @Nash1950 [p. 33].
 ```
 
@@ -214,16 +197,14 @@ This is a parenthetical citation [see @Nash1950 pp 12-13; @Nash1951].
 
 This is a textual citation @Nash1950 [p. 33].
 
-Epigraphs
---------------------------------------------------------------------------------
+## Epigraphs
 
 The template supports special notation for epigraphs.
 
 ```md
 <!-- This is an epigraph -->
-> I am John Nash.
-> :footer[John Nash [@Nash1950]]
+
+> I am John Nash. :footer[John Nash [@Nash1950]]
 ```
 
-> I am John Nash.
-> :footer[John Nash [@Nash1950]]
+> I am John Nash. :footer[John Nash [@Nash1950]]

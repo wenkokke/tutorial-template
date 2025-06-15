@@ -26,25 +26,27 @@ export default function remarkTuftLinter() {
       tree,
       ["containerDirective", "leafDirective", "textDirective"],
       (directive) => {
-        if (!is(directive, [
+        if (
+          !is(directive, [
             { type: "containerDirective", name: "fullwidthfigure" },
             { type: "leafDirective", name: "iframefigure" },
             { type: "textDirective", name: "marginfigure" },
             { type: "textDirective", name: "footer" },
-        ])) {
-            const type = directive.type.match(/(?<type>[a-z]+)Directive/).groups.type;
-            const pref = ":".repeat(["text", "leaf", "container"].indexOf(type) + 1);
-            const name = pref + directive.name;
-            file.fail(
-                `unsupported ${type} directive ${name}`,
-                {
-                    place: directive.position,
-                    ruleId: "supported-directives",
-                    source: "remark-tufte-linter",
-                }
-            );
+          ])
+        ) {
+          const type = directive.type.match(/(?<type>[a-z]+)Directive/).groups
+            .type;
+          const pref = ":".repeat(
+            ["text", "leaf", "container"].indexOf(type) + 1,
+          );
+          const name = pref + directive.name;
+          file.fail(`unsupported ${type} directive ${name}`, {
+            place: directive.position,
+            ruleId: "supported-directives",
+            source: "remark-tufte-linter",
+          });
         }
-      }
+      },
     );
   };
 }
