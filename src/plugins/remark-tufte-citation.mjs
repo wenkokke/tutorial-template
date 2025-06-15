@@ -9,7 +9,7 @@ import { visit } from "unist-util-visit";
 export default function remarkTufteCitation() {
   return function (tree, _file) {
     visit(tree, "code", (code) => {
-        code.value = code.value.replaceAll('@', '&#0040;');
-    })
+      code.value = code.value.replaceAll("@", "&#0040;");
+    });
   };
 }
