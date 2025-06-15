@@ -11,8 +11,10 @@ import remarkTufteNewthought from "./src/plugins/remark-tufte-newthought.mjs";
 import remarkTufteSection from "./src/plugins/remark-tufte-section.mjs";
 import remarkTufteSidenote from "./src/plugins/remark-tufte-sidenote.mjs";
 import rehypeCitation from "rehype-citation";
+import rehypeLinkAnchor from "./src/plugins/rehype-link-anchor.mjs";
 import rehypeMathJax from "rehype-mathjax";
 import rehypeRaw from "rehype-raw";
+import rehypeSlug from "rehype-slug";
 import rehypeTufteCitation from "./src/plugins/rehype-tufte-citation.mjs";
 import rehypeTufteCode from "./src/plugins/rehype-tufte-code.mjs";
 
@@ -60,10 +62,11 @@ export default defineConfig({
           tooltipAttribute: "data-title",
         },
       ],
+      rehypeSlug,
+      rehypeLinkAnchor,
       [rehypeMathJax, MathJax],
       rehypeTufteCitation,
       rehypeTufteCode,
     ],
-    gfm: true,
   },
 });
