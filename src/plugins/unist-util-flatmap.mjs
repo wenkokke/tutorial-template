@@ -28,4 +28,3 @@ export function flatMapMut(tree, test, func) {
     }
   });
 }
-
