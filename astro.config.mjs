@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import remarkBehead from "remark-behead";
+import remarkCustomHeaderId from "remark-custom-header-id";
 import remarkDirective from "remark-directive";
 import remarkMath from "remark-math";
 import remarkSmartyPants from "remark-smartypants";
@@ -33,6 +34,7 @@ export default defineConfig({
     syntaxHighlight: "prism",
     remarkPlugins: [
       [remarkBehead, { depth: 1 }],
+      remarkCustomHeaderId,
       remarkDirective,
       remarkMath,
       // @ts-ignore
