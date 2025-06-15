@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import remarkBehead from "remark-behead";
 import remarkDirective from "remark-directive";
 import remarkMath from "remark-math";
+import remarkSmartyPants from "remark-smartypants";
 import remarkTufteEpigraph from "./src/plugins/remark-tufte-epigraph.mjs";
 import remarkTufteFigure from "./src/plugins/remark-tufte-figure.mjs";
 import remarkTuftLinter from "./src/plugins/remark-tufte-linter.mjs";
@@ -32,6 +33,8 @@ export default defineConfig({
       [remarkBehead, { depth: 1 }],
       remarkDirective,
       remarkMath,
+      // @ts-ignore
+      [remarkSmartyPants, { dashes: "oldschool" }],
       remarkTuftLinter,
       remarkTufteSection,
       remarkTufteNewthought,
