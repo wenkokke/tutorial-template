@@ -12,7 +12,9 @@ import remarkTufteNewthought from "./src/plugins/remark-tufte-newthought.mjs";
 import remarkTufteSection from "./src/plugins/remark-tufte-section.mjs";
 import remarkTufteSidenote from "./src/plugins/remark-tufte-sidenote.mjs";
 import rehypeCitation from "rehype-citation";
+import rehypeLinkAnchor from "./src/plugins/rehype-link-anchor.mjs";
 import rehypeMathJax from "rehype-mathjax";
+import rehypeSlug from "rehype-slug";
 import rehypeTufteCitation from "./src/plugins/rehype-tufte-citation.mjs";
 
 // MathJax options:
@@ -51,9 +53,10 @@ export default defineConfig({
           tooltipAttribute: "data-title",
         },
       ],
+      rehypeSlug,
+      rehypeLinkAnchor,
       [rehypeMathJax, MathJax],
       rehypeTufteCitation,
     ],
-    gfm: true,
   },
 });

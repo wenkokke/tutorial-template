@@ -86,3 +86,38 @@ const { frontmatter } = Astro.props;
     line-height: 1;
   }
 </style>
+
+<!-- Style for heading anchors -->
+<style is:global>
+  h2 > a.heading-anchor > span.heading-anchor-icon > svg {
+    margin-left: 0.6rem;
+    height: 1.6rem;
+    width: auto;
+  }
+  h3 > a.heading-anchor > span.heading-anchor-icon > svg {
+    margin-left: 0.45rem;
+    height: 1.2rem;
+    width: auto;
+  }
+  a.heading-anchor {
+    /* TODO: use text-decoration when next version of tufte-css is released */
+    background: unset;
+  }
+  a.heading-anchor:hover {
+    /* TODO: use text-decoration when next version of tufte-css is released */
+    background: -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(currentColor, currentColor);
+    background: linear-gradient(#fffff8, #fffff8), linear-gradient(#fffff8, #fffff8), linear-gradient(currentColor, currentColor);
+    -webkit-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+    -moz-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+    background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+    background-repeat: no-repeat, no-repeat, repeat-x;
+    text-shadow: 0.03em 0 #fffff8, -0.03em 0 #fffff8, 0 0.03em #fffff8, 0 -0.03em #fffff8, 0.06em 0 #fffff8, -0.06em 0 #fffff8, 0.09em 0 #fffff8, -0.09em 0 #fffff8, 0.12em 0 #fffff8, -0.12em 0 #fffff8, 0.15em 0 #fffff8, -0.15em 0 #fffff8;
+    background-position: 0% 93%, 100% 93%, 0% 93%;
+  }
+  a.heading-anchor > span.heading-anchor-icon > svg {
+    display: none;
+  }
+  a.heading-anchor:hover > span.heading-anchor-icon > svg {
+    display: inline;
+  }
+</style>
