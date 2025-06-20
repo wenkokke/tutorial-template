@@ -38,10 +38,10 @@ This is the start of a new section.
 ```
 
 ```md
-:newthought[This is a new thought], which starts a new section.
+[This is a new thought]{.newthought}, which starts a new section.
 ```
 
-:newthought[This is a new thought], which starts a new section.
+[This is a new thought]{.newthought}, which starts a new section.
 
 The use of the `:newthought` command is preferred if the document can be structured using only level-1 headers. You should aim to structure your document in this way. If you really need level-2 headers, you should only use level-1 headers to start sections.
 
@@ -94,30 +94,34 @@ A margin figure renders as a margin note.
 ```md
 <!-- This is a margin figure -->
 
-This is the main text. :marginfigure[![alt](url "caption")]
+This is the main text. [![alt](url "caption")]{.marginfigure}
 ```
 
-This is the main text. :marginfigure[![Image of a Rhinoceros](../assets/rhino.png "This is a margin figure.")]
+This is the main text. [![Image of a Rhinoceros](../assets/rhino.png "This is a margin figure.")]{.marginfigure}
 
 A full-width figure renders across the full width of the page.
 
 ```md
 <!-- This is a full-width figure -->
 
-:::fullwidthfigure ![alt](url "caption") :::
+:::fullwidthfigure
+![alt](url "caption")
+:::
 ```
 
-:::fullwidthfigure ![Figurative map of the successive losses of the French Army in the Russian campaign, 1812-1813](../assets/napoleons-march.png) :::
+:::fullwidthfigure
+![Figurative map of the successive losses of the French Army in the Russian campaign, 1812-1813](../assets/napoleons-march.png)
+:::
 
 An iframe figure can be used to embed external videos. It renders in the main text column and its caption renders as a margin note.
 
 ```md
 <!-- This is an iframe figure -->
 
-:iframefigure[caption]{src=url}
+[caption]{.iframefigure src=url}
 ```
 
-::iframefigure[iPhone Resolution by Edward Tufte]{src=https://www.youtube.com/embed/YslQ2625TR4}
+[iPhone Resolution by Edward Tufte]{.iframefigure src=https://www.youtube.com/embed/YslQ2625TR4}
 
 ## Code
 
@@ -204,7 +208,11 @@ The template supports special notation for epigraphs.
 ```md
 <!-- This is an epigraph -->
 
-> I am John Nash. :footer[John Nash [@Nash1950]]
+:::epigraph
+> I am John Nash. [John Nash [@Nash1950]]{.footer}
+:::
 ```
 
-> I am John Nash. :footer[John Nash [@Nash1950]]
+:::epigraph
+> I am John Nash. [John Nash [@Nash1950]]{.footer}
+:::
