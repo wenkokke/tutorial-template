@@ -14,13 +14,17 @@ export default function remarkTufteEpigraph() {
    * @returns {Root | null | undefined}
    */
   return function (tree, _file) {
-    const isEpigraphsFooter = (node) =>
-      node.type === "textDirective" && node.name === "footer";
-    const isEpigraphsCite = (node) =>
-      node.type === "textDirective" && node.name === "cite";
-    flatMapMut(tree, "blockquote", (epigraphs) => {
-      flatMapMut(epigraphs, isEpigraphsFooter, (footer) => {
-        flatMapMut(epigraphs, isEpigraphsCite, (cite) => {
+    const isEpigraph = (node) =>
+      node.type === "containerDirective" && node.name === "epigraph";
+    const isEpigraphFooter = (node) =>
+      node.type === "bracketedSpan" &&
+      (node.properties?.className ?? []).includes("footer");
+    const isEpigraphCite = (node) =>
+      node.type === "bracketedSpan" &&
+      (node.properties?.className ?? []).includes("cite");
+    flatMapMut(tree, isEpigraph, (epigraph) => {
+      flatMapMut(epigraph, isEpigraphFooter, (footer) => {
+        flatMapMut(epigraph, isEpigraphCite, (cite) => {
           return [
             { type: "html", value: "<cite>" },
             ...cite.children,
@@ -35,7 +39,7 @@ export default function remarkTufteEpigraph() {
       });
       return [
         { type: "html", value: '<div class="epigraph">' },
-        epigraphs,
+        ...epigraph.children,
         { type: "html", value: "</div>" },
       ];
     });

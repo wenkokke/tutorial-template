@@ -1,6 +1,16 @@
 // @ts-check
+/**
+ * @typedef {import("mdast-util-to-hast").State} State
+ * @typedef {import("mdast").Node} MdastNode
+ * @typedef {import("@benrbray/mdast-util-cite").InlineCiteNode} MdastCite
+ * @typedef {import("hast").Node} HastNode
+ * @typedef {import("hast").Text} HastText
+ */
 import { defineConfig } from "astro/config";
+import assert from "assert";
 import remarkBehead from "remark-behead";
+import remarkBracketedSpans2 from "remark-bracketed-spans-2";
+import remarkCite from "@benrbray/remark-cite";
 import remarkCustomHeaderId from "remark-custom-header-id";
 import remarkDirective from "remark-directive";
 import remarkMath from "remark-math";
@@ -18,6 +28,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeTufteCitation from "./src/plugins/rehype-tufte-citation.mjs";
 import rehypeTufteCode from "./src/plugins/rehype-tufte-code.mjs";
+import { bracketedSpanToHast } from "mdast-util-bracketed-spans";
 
 // MathJax options:
 const MathJax = {
@@ -34,6 +45,9 @@ export default defineConfig({
     syntaxHighlight: "prism",
     remarkPlugins: [
       [remarkBehead, { depth: 1 }],
+      // @ts-ignore
+      remarkBracketedSpans2,
+      remarkCite,
       remarkCustomHeaderId,
       remarkDirective,
       remarkMath,
@@ -48,6 +62,7 @@ export default defineConfig({
     ],
     remarkRehype: {
       handlers: {
+        bracketedSpan: bracketedSpanToHast,
         // @ts-ignore
         cite: rehypeTufteCitation.citeToHast,
       },

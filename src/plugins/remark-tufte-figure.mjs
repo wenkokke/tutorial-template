@@ -68,7 +68,8 @@ export default function remarkTufteFigure() {
      * @type {Test}
      */
     const isMarginFigure = (node) =>
-      is(node, "textDirective") && node.name == "marginfigure";
+      is(node, "bracketedSpan") &&
+      (node.properties?.className ?? []).includes("marginfigure");
     // Render margin figures
     flatMapMut(tree, isMarginFigure, (figure) => {
       // Add the figuretype attribute
@@ -106,11 +107,11 @@ export default function remarkTufteFigure() {
      * @type {Test}
      */
     const isIframeFigure = (node) =>
-      is(node, "leafDirective") && node.name == "iframefigure";
+      is(node, "containerDirective") && node.name === "iframefigure";
     // Render margin figures
     flatMapMut(tree, isIframeFigure, (figure) => {
       // Check that the src attribute is present
-      const src = figure?.attributes?.src;
+      const src = figure.attributes?.src;
       if (!src) {
         file.fail(`missing attribute 'src' on \`::iframefigure\` directive`);
       }
