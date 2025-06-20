@@ -41,6 +41,8 @@ This is the start of a new section.
 :newthought[This is a new thought], which starts a new section.
 ```
 
+:newthought[This is a new thought], which starts a new section.
+
 The use of the `:newthought` command is preferred if the document can be structured using only level-1 headers. You should aim to structure your document in this way. If you really need level-2 headers, you should only use level-1 headers to start sections.
 
 ```md
