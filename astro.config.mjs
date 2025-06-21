@@ -55,6 +55,8 @@ function citeToHast(state, node, _parent) {
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://wen.works",
+  base: import.meta.env.DEV ? "" : "/tutorial-template",
   markdown: {
     syntaxHighlight: "prism",
     remarkPlugins: [
