@@ -17,7 +17,7 @@ import remarkMath from "remark-math";
 import remarkSmartyPants from "remark-smartypants";
 import remarkTufteEpigraph from "./src/plugins/remark-tufte-epigraph.mjs";
 import remarkTufteFigure from "./src/plugins/remark-tufte-figure.mjs";
-import remarkTuftLinter from "./src/plugins/remark-tufte-linter.mjs";
+import remarkTufteLinter from "./src/plugins/remark-tufte-linter.mjs";
 import remarkTufteNewthought from "./src/plugins/remark-tufte-newthought.mjs";
 import remarkTufteSection from "./src/plugins/remark-tufte-section.mjs";
 import remarkTufteSidenote from "./src/plugins/remark-tufte-sidenote.mjs";
@@ -53,7 +53,7 @@ export default defineConfig({
       remarkMath,
       // @ts-ignore
       [remarkSmartyPants, { dashes: "oldschool" }],
-      remarkTuftLinter,
+      remarkTufteLinter,
       remarkTufteSection,
       remarkTufteNewthought,
       remarkTufteEpigraph,

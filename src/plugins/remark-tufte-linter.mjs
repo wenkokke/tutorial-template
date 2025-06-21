@@ -20,6 +20,31 @@ export default function remarkTuftLinter() {
         });
       }
     });
+    // supported-bracketed-spans:
+    // Check that there are only supported bracketed spans
+    visit(tree, "bracketedSpan", (bracketedSpan) => {
+      const className = bracketedSpan.properties?.className ?? [];
+      if (className.length !== 1) {
+        file.fail(
+          `unsupported bracketed span with classes '${className.join(" ")}'`,
+        );
+      }
+      const type = className[0];
+      if (!["cite", "footer", "marginfigure", "newthought"].includes(type)) {
+        file.fail(`unsupported bracketed span '${className[0]}'`);
+      }
+      for (const prop in bracketedSpan.properties) {
+        if (prop === "className") {
+          continue;
+        }
+        if (prop === "src" && type === "iframefigure") {
+          continue;
+        }
+        if (Object.hasOwn(bracketedSpan.properties, prop)) {
+          file.fail(`unsupported ${prop} attribute for bracketed span ${type}`);
+        }
+      }
+    });
     // supported-directives:
     // Check that there are only supported directives
     visit(
@@ -27,13 +52,23 @@ export default function remarkTuftLinter() {
       ["containerDirective", "leafDirective", "textDirective"],
       (directive) => {
         if (
-          !is(directive, [
+          is(directive, [
+            { type: "containerDirective", name: "epigraph" },
             { type: "containerDirective", name: "fullwidthfigure" },
-            { type: "leafDirective", name: "iframefigure" },
-            { type: "textDirective", name: "marginfigure" },
-            { type: "textDirective", name: "footer" },
+            { type: "containerDirective", name: "iframefigure" },
           ])
         ) {
+          for (const prop in directive.attributes) {
+            if (directive.name === "iframefigure" && prop === "src") {
+              continue;
+            }
+            if (Object.hasOwn(directive.attributes, prop)) {
+              file.fail(
+                `unsupported ${prop} attribute for directive ${directive.name}`,
+              );
+            }
+          }
+        } else {
           const type = directive.type.match(/(?<type>[a-z]+)Directive/).groups
             .type;
           const pref = ":".repeat(
