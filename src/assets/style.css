@@ -1,4 +1,7 @@
-/* Add Prism themes */
+/* Add Tufte CSS */
+@import "tufte-css/tufte.min.css";
+
+/* Add Prism Themes */
 @import "prismjs/themes/prism-solarizedlight.min.css" screen;
 @import "prismjs/themes/prism-tomorrow.min.css" screen and
   (prefers-color-scheme: dark);
