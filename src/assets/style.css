@@ -6,6 +6,21 @@
 @import "prismjs/themes/prism-tomorrow.min.css" screen and
   (prefers-color-scheme: dark);
 
+/* Colors for use in link anchors and copy-on-click */
+/* NOTE: These colors must be kept in sync with the syntax highlighting theme. */
+:root {
+  --link-anchor: #151515;
+  --background: #fdf6e3;
+  --foreground: #657b83;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --link-anchor: #fffff8;
+    --background: #2d2d2d;
+    --foreground: #cccccc;
+  }
+}
+
 /* Fix image scaling in tufte-css */
 /* See: https://github.com/edwardtufte/tufte-css/pull/192 */
 img {
@@ -51,11 +66,15 @@ h2 > a.heading-anchor > span.heading-anchor-icon > svg {
   margin-left: 0.6rem;
   height: 1.6rem;
   width: auto;
+  stroke: var(--link-anchor);
+  fill: var(--link-anchor);
 }
 h3 > a.heading-anchor > span.heading-anchor-icon > svg {
   margin-left: 0.45rem;
   height: 1.2rem;
   width: auto;
+  stroke: var(--link-anchor);
+  fill: var(--link-anchor);
 }
 a.heading-anchor {
   /* TODO: use text-decoration when next version of tufte-css is released */
@@ -64,11 +83,12 @@ a.heading-anchor {
 a.heading-anchor:hover {
   /* TODO: use text-decoration when next version of tufte-css is released */
   background:
-    -webkit-linear-gradient(#fffff8, #fffff8),
-    -webkit-linear-gradient(#fffff8, #fffff8),
+    -webkit-linear-gradient(var(--link-anchor), var(--link-anchor)),
+    -webkit-linear-gradient(var(--link-anchor), var(--link-anchor)),
     -webkit-linear-gradient(currentColor, currentColor);
   background:
-    linear-gradient(#fffff8, #fffff8), linear-gradient(#fffff8, #fffff8),
+    linear-gradient(var(--link-anchor), var(--link-anchor)),
+    linear-gradient(var(--link-anchor), var(--link-anchor)),
     linear-gradient(currentColor, currentColor);
   -webkit-background-size:
     0.05em 1px,
@@ -83,19 +103,6 @@ a.heading-anchor:hover {
     0.05em 1px,
     1px 1px;
   background-repeat: no-repeat, no-repeat, repeat-x;
-  text-shadow:
-    0.03em 0 #fffff8,
-    -0.03em 0 #fffff8,
-    0 0.03em #fffff8,
-    0 -0.03em #fffff8,
-    0.06em 0 #fffff8,
-    -0.06em 0 #fffff8,
-    0.09em 0 #fffff8,
-    -0.09em 0 #fffff8,
-    0.12em 0 #fffff8,
-    -0.12em 0 #fffff8,
-    0.15em 0 #fffff8,
-    -0.15em 0 #fffff8;
   background-position:
     0% 93%,
     100% 93%,
