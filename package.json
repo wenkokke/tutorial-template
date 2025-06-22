@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && npm run epub",
     "preview": "astro preview",
     "astro": "astro",
-    "prettier": "npx prettier -w ."
+    "prettier": "npx prettier -w .",
+    "epub": "node src/plugins/cleancss-tufte-fix.mjs && mkdir -p dist && cd src && pandoc -d book.config.yml",
+    "epubcheck": "epubcheck --customMessages .epubcheck.tsv dist/tutorial-template.epub",
+    "epub-view": "ebook-viewer dist/tutorial-template.epub"
   },
   "dependencies": {
     "astro": "^5.9.1",
@@ -17,6 +20,7 @@
     "@types/hast": "^3.0.4",
     "@types/mdast": "^4.0.4",
     "@types/unist": "^3.0.3",
+    "clean-css-cli": "^5.6.3",
     "hastscript": "^9.0.1",
     "mdast-util-bracketed-spans": "^1.0.1",
     "prettier": "^3.5.3",

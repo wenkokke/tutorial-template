@@ -1,0 +1,7 @@
+/*
+ * Pandoc renders bracketed .footer spans as spans,
+ * which do not display as block elements by default.
+ */
+span.footer {
+    display: block;
+}
