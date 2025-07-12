@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "prettier": "npx prettier -w ."
+    "prettier": "npx prettier -w .",
+    "preepub": "node src/plugins/patch-tufte-css-for-epub.mjs"
   },
   "dependencies": {
     "tufte-css": "^1.8.0"
@@ -23,6 +24,7 @@
     "astro": "^5.11.0",
     "fast-deep-equal": "^3.1.3",
     "hast-util-from-html": "^2.0.3",
+    "clean-css-cli": "^5.6.3",
     "hastscript": "^9.0.1",
     "mdast-util-bracketed-spans": "^1.0.1",
     "mdast-util-phrasing": "^4.1.0",
