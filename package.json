@@ -4,11 +4,14 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && npm run epub",
     "preview": "astro preview",
     "astro": "astro",
     "prettier": "npx prettier -w .",
-    "preepub": "node src/plugins/patch-tufte-css-for-epub.mjs"
+    "preepub": "node src/plugins/patch-tufte-css-for-epub.mjs",
+    "epub": "mkdir -p dist && cd src && pandoc -d book.epub.yml",
+    "epubcheck": "epubcheck --customMessages .epubcheck.tsv dist/tutorial-template.epub",
+    "epub-view": "ebook-viewer dist/tutorial-template.epub"
   },
   "dependencies": {
     "tufte-css": "^1.8.0"
