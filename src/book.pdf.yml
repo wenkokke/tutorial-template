@@ -1,0 +1,32 @@
+metadata:
+  title: Tutorial Template
+  author: Wen Kokke
+  documentclass: "tufte-book"
+
+reader: markdown
+input-file: book.md
+
+# writer: latex
+# output-file: ../dist/tutorial-template.tex
+writer: pdf
+output-file: ../dist/tutorial-template.pdf
+top-level-division: chapter
+
+include-in-header:
+  - assets/latex/include-in-header.tex
+
+include-after-body:
+  - assets/latex/include-after-body.tex
+
+resource-path:
+  - assets/latex/tufte-latex
+
+data-dir: assets/latex/
+
+filters:
+  - plugins/pandoc-include-files.lua
+  - plugins/pandoc-pdf.lua
+
+pdf-engine: latexmk
+
+# cite-method: natbib
